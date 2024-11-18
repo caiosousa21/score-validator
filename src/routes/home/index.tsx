@@ -10,7 +10,9 @@ const Home = () => {
         <button onClick={() => navigate(ROUTES.individualForm.path)}>
           Pessoa Física
         </button>
-        <button>Pessoa Jurídica</button>
+        <button onClick={() => navigate(ROUTES.companyForm.path)}>
+          Pessoa Jurídica
+        </button>
       </section>
     </div>
   );

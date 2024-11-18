@@ -1,5 +1,6 @@
 import Home from "./home/index.tsx";
-import CPFForm from "./individualForm/index.tsx";
+import IndividualForm from "./individualForm/index.tsx";
+import CompanyForm from "./companyForm/index.tsx";
 
 const ROUTES: Record<string, { path: string; component: React.ComponentType }> =
   {
@@ -9,7 +10,11 @@ const ROUTES: Record<string, { path: string; component: React.ComponentType }> =
     },
     individualForm: {
       path: "/formulario-individual",
-      component: CPFForm,
+      component: IndividualForm,
+    },
+    companyForm: {
+      path: "/formulario-empresarial",
+      component: CompanyForm,
     },
   };
 
