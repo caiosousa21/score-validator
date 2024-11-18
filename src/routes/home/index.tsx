@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import ROUTES from "../routes";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -6,7 +7,7 @@ const Home = () => {
     <div>
       <h1>Welcome to the Score Validator</h1>
       <section>
-        <button onClick={() => navigate("/formulario-individual")}>
+        <button onClick={() => navigate(ROUTES.individualForm.path)}>
           Pessoa Física
         </button>
         <button>Pessoa Jurídica</button>

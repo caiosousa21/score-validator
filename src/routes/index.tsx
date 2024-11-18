@@ -1,13 +1,13 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./home/index.tsx";
-import CPFForm from "./individualForm/index.tsx";
+import ROUTES from "./routes.ts";
 
 function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/formulario-individual" element={<CPFForm />} />
+        {Object.values(ROUTES).map(({ path, component: Component }) => (
+          <Route key={path} path={path} element={<Component />} />
+        ))}
       </Routes>
     </BrowserRouter>
   );
