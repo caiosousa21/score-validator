@@ -1,0 +1,23 @@
+form{
+    min-width: 30rem;
+    min-height: inherit;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+form div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+label{
+    align-self: flex-start;
+}
+
+input, select{
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid #ccc;
+}

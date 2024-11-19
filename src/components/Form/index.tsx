@@ -9,6 +9,7 @@ import {
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useSubmitForm } from "../../hooks/useSubmitForm";
+import "./styles.css";
 
 interface FormProps<T extends FieldValues> {
   defaultValues: DefaultValues<T>;

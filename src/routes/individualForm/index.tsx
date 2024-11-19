@@ -19,19 +19,21 @@ const IndividualForm = () => {
   };
 
   return (
-    <Form
-      defaultValues={defaultValues}
-      schema={schema}
-      submitUrl="/credit-score/person"
-      formType="individualForm"
-      fields={[
-        { name: "name", label: "Name" },
-        { name: "age", label: "Age", type: "number" },
-        { name: "document", label: "Document" },
-        { name: "income", label: "Income", type: "number" },
-        { name: "city", label: "City" },
-      ]}
-    />
+    <main>
+      <Form
+        defaultValues={defaultValues}
+        schema={schema}
+        submitUrl="/credit-score/person"
+        formType="individualForm"
+        fields={[
+          { name: "name", label: "Name" },
+          { name: "age", label: "Age", type: "number" },
+          { name: "document", label: "Document" },
+          { name: "income", label: "Income", type: "number" },
+          { name: "city", label: "City" },
+        ]}
+      />
+    </main>
   );
 };
 
