@@ -10,11 +10,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import ROUTES from "../../routes/routes";
 
-interface GenericFormProps<T extends FieldValues> {
+interface FormProps<T extends FieldValues> {
   defaultValues: DefaultValues<T>;
   schema: yup.ObjectSchema<T>;
   submitUrl: string;
+  formType: "companyForm" | "individualForm";
   fields: {
     name: Path<T>;
     label: string;
@@ -26,8 +28,9 @@ export const Form = <T extends Record<string, any>>({
   defaultValues,
   schema,
   submitUrl,
+  formType,
   fields,
-}: GenericFormProps<T>) => {
+}: FormProps<T>) => {
   const navigate = useNavigate();
   const {
     register,
@@ -43,7 +46,8 @@ export const Form = <T extends Record<string, any>>({
       const response = await axios.post(submitUrl, data);
       if (response.status === 200) {
         localStorage.setItem("response", JSON.stringify(response.data));
-        navigate("/resultado");
+        localStorage.setItem("formType", formType);
+        navigate(ROUTES.result.path);
       }
     } catch (error) {
       if (axios.isAxiosError(error)) {

@@ -23,6 +23,7 @@ const IndividualForm = () => {
       defaultValues={defaultValues}
       schema={schema}
       submitUrl="/credit-score/person"
+      formType="individualForm"
       fields={[
         { name: "name", label: "Name" },
         { name: "age", label: "Age", type: "number" },

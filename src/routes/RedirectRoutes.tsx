@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { ROUTES_LOOKUP } from "../utils/routesLookup";
+import ROUTES from "./routes";
 
 interface RedirectRoutesProps {
   children: JSX.Element;
@@ -14,10 +15,13 @@ function RedirectRoutes({ children }: RedirectRoutesProps) {
   useEffect(() => {
     const response = localStorage.getItem("response");
     if (response && location.pathname !== "/resultado") {
-      navigate("/resultado", { replace: true });
+      navigate(ROUTES.result.path, { replace: true });
     }
-    if (matchedRoute === undefined) {
-      navigate("/", { replace: true });
+    if (
+      matchedRoute === undefined ||
+      (!response && location.pathname === "/resultado")
+    ) {
+      navigate(ROUTES.home.path, { replace: true });
     }
   }, [location.pathname, navigate, matchedRoute]);
 

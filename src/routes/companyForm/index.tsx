@@ -21,6 +21,7 @@ const CompanyForm = () => {
       defaultValues={defaultValues}
       schema={schema}
       submitUrl="/credit-score/company"
+      formType="companyForm"
       fields={[
         { name: "name", label: "Razão social" },
         { name: "document", label: "Document" },

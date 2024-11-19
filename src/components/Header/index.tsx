@@ -9,10 +9,12 @@ const Header = () => {
   const location = useLocation();
 
   const matchedRoute = ROUTES_LOOKUP[location.pathname];
+  const exceptionRoutes = [ROUTES.home.path, ROUTES.result.path];
+  const isExceptionRoute = exceptionRoutes.includes(location.pathname);
 
   return (
     <header>
-      {location.pathname !== "/" && (
+      {!isExceptionRoute && (
         <BsArrowReturnLeft
           className="back-button"
           role="button"

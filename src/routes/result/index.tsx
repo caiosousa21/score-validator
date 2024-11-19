@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import ROUTES from "../routes";
 
 interface ResponseData {
   status: "APPROVED" | "DENIED";
@@ -28,6 +29,7 @@ function Result() {
   const navigate = useNavigate();
   const response = localStorage.getItem("response");
   let parsedResponse: ResponseData | null = null;
+  const formType = localStorage.getItem("formType") as keyof typeof ROUTES;
 
   if (response !== null) {
     try {
@@ -38,8 +40,11 @@ function Result() {
   }
 
   const handleRetryClick = () => {
+    const targetRoute =
+      formType && ROUTES[formType] ? ROUTES[formType].path : ROUTES.home.path;
+    localStorage.removeItem("formType");
     localStorage.removeItem("response");
-    navigate(-1);
+    navigate(targetRoute);
   };
 
   const StatusComponent = parsedResponse?.status
