@@ -2,10 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/routes";
 import "./index.css";
 import { BsArrowReturnLeft } from "react-icons/bs";
-
-const ROUTES_LOOKUP = Object.fromEntries(
-  Object.values(ROUTES).map((route) => [route.path, route])
-);
+import { ROUTES_LOOKUP } from "../../utils/routesLookup";
 
 const Header = () => {
   const navigate = useNavigate();

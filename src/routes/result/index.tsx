@@ -6,15 +6,20 @@ interface ResponseData {
   [key: string]: any;
 }
 
-const Approved = () => {
-  return <div>Approved</div>;
+const Approved = ({ max_amount }: { max_amount?: number }) => {
+  return (
+    <div>
+      <h2>Approved</h2>
+      <p>Max Amount: {max_amount !== undefined ? max_amount : "N/A"}</p>
+    </div>
+  );
 };
 
 const Denied = () => {
-  return <div>Denied</div>;
+  return <h2>Denied</h2>;
 };
 
-const statusComponents: Record<ResponseData["status"], React.FC> = {
+const statusComponents: Record<ResponseData["status"], React.FC<any>> = {
   APPROVED: Approved,
   DENIED: Denied,
 };
@@ -32,17 +37,18 @@ function Result() {
     }
   }
 
-  const StatusComponent = parsedResponse?.status
-    ? statusComponents[parsedResponse.status]
-    : null;
   const handleRetryClick = () => {
     localStorage.removeItem("response");
     navigate(-1);
   };
 
+  const StatusComponent = parsedResponse?.status
+    ? statusComponents[parsedResponse.status]
+    : null;
+
   return StatusComponent ? (
     <div>
-      <StatusComponent />
+      <StatusComponent {...parsedResponse} />
       <button onClick={handleRetryClick}>Checar Score Novamente</button>
     </div>
   ) : (
