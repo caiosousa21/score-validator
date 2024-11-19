@@ -8,9 +8,7 @@ import {
 } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import ROUTES from "../../routes/routes";
+import { useSubmitForm } from "../../hooks/useSubmitForm";
 
 interface FormProps<T extends FieldValues> {
   defaultValues: DefaultValues<T>;
@@ -31,7 +29,6 @@ export const Form = <T extends Record<string, any>>({
   formType,
   fields,
 }: FormProps<T>) => {
-  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -40,27 +37,15 @@ export const Form = <T extends Record<string, any>>({
     resolver: yupResolver(schema) as unknown as Resolver<T, any>,
     defaultValues,
   });
+  const { onSubmit } = useSubmitForm();
 
-  const onSubmit: SubmitHandler<T> = async (data) => {
-    try {
-      const response = await axios.post(submitUrl, data);
-      if (response.status === 200) {
-        localStorage.setItem("response", JSON.stringify(response.data));
-        localStorage.setItem("formType", formType);
-        navigate(ROUTES.result.path);
-      }
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        console.error("API Error:", error.response?.data);
-      } else {
-        console.error("Unexpected Error:", error);
-      }
-    }
+  const handleFormSubmit: SubmitHandler<T> = (data) => {
+    onSubmit(data, submitUrl, formType);
   };
 
   return (
     <form
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(handleFormSubmit)}
       style={{ display: "flex", flexDirection: "column" }}
     >
       {fields.map(({ name, label, type = "text" }) => (
