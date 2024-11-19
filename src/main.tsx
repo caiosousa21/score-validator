@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App.tsx";
 const { worker } = await import("./mocks/browser");
 
-worker.start();
+await worker.start();
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

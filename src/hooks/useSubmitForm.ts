@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../routes/routes";
+import api from "../api/api";
 
 export const useSubmitForm = <T>() => {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ export const useSubmitForm = <T>() => {
     formType: string
   ): Promise<void> => {
     try {
-      const response = await axios.post(submitUrl, data);
+      const response = await api.post(submitUrl, data);
       if (response.status === 200) {
         localStorage.setItem("response", JSON.stringify(response.data));
         localStorage.setItem("formType", formType);

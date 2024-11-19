@@ -16,9 +16,7 @@ export const worker = setupWorker(
       ? HttpResponse.json({ status: "APPROVED", max_amount: 10000 })
       : HttpResponse.json({ status: "DENIED" });
   }),
-  http.get("/credit-score/list", async ({ request }) => {
-    const requestBody = await request.json();
-    console.log(requestBody);
+  http.get("/credit-score/list", async () => {
     return HttpResponse.json({
       persons: [
         {

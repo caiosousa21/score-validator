@@ -12,7 +12,7 @@ function Result() {
     <div>
       <StatusComponent {...parsedResponse} />
       <button onClick={handleRetryClick}>Checar Score Novamente</button>
-      <button onClick={handleAnalysisClick}>Ver Requerimentos</button>
+      <button onClick={handleAnalysisClick}>Checar análise de créditos</button>
     </div>
   ) : (
     <div>Loading or Unknown Status</div>

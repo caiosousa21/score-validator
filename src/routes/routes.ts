@@ -2,7 +2,7 @@ import Home from "./home/index.tsx";
 import IndividualForm from "./individualForm/index.tsx";
 import CompanyForm from "./companyForm/index.tsx";
 import Result from "./result/index.tsx";
-import CreditAnalysis from "./creditAnalysis/index.tsx";
+import CreditAnalysis from "./analysis/index.tsx";
 
 const ROUTES: Record<
   string,
