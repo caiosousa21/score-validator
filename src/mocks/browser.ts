@@ -2,16 +2,12 @@ import { http, HttpResponse } from "msw";
 import { setupWorker } from "msw/browser";
 
 export const worker = setupWorker(
-  http.post("/credit-score/person", async ({ request }) => {
-    const requestBody = await request.json();
-    console.log(requestBody);
+  http.post("/credit-score/person", async () => {
     return Math.random() > 0.5
       ? HttpResponse.json({ status: "APPROVED", max_amount: 88888 })
       : HttpResponse.json({ status: "DENIED" });
   }),
-  http.post("/credit-score/company", async ({ request }) => {
-    const requestBody = await request.json();
-    console.log(requestBody);
+  http.post("/credit-score/company", async () => {
     return Math.random() > 0.5
       ? HttpResponse.json({ status: "APPROVED", max_amount: 10000 })
       : HttpResponse.json({ status: "DENIED" });

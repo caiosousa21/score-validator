@@ -3,7 +3,7 @@ const ENDPOINTS: Record<string, { url: string }> = {
     url: "/credit-score/list",
   },
   personScore: {
-    url: "/credit-score/individual",
+    url: "/credit-score/person",
   },
   companyScore: {
     url: "/credit-score/company",

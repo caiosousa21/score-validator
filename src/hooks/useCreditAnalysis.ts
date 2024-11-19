@@ -10,7 +10,6 @@ export const useCreditAnalysis = () => {
     api.get(ENDPOINTS.list.url).then((response) => {
       setData(response.data);
       setLoading(false);
-      console.log("Fetched data:", response.data);
     });
   }, []);
   return {
