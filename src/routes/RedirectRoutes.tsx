@@ -14,12 +14,16 @@ function RedirectRoutes({ children }: RedirectRoutesProps) {
 
   useEffect(() => {
     const response = localStorage.getItem("response");
-    if (response && location.pathname !== "/resultado") {
+    if (
+      response &&
+      location.pathname !== ROUTES.result.path &&
+      location.pathname !== ROUTES.analysis.path
+    ) {
       navigate(ROUTES.result.path, { replace: true });
     }
     if (
       matchedRoute === undefined ||
-      (!response && location.pathname === "/resultado")
+      (!response && location.pathname === ROUTES.result.path)
     ) {
       navigate(ROUTES.home.path, { replace: true });
     }

@@ -31,9 +31,18 @@ export const useResult = () => {
     navigate(targetRoute);
   };
 
+  const handleAnalysisClick = () => {
+    navigate(ROUTES.analysis.path);
+  };
+
   const StatusComponent = parsedResponse?.status
     ? statusComponents[parsedResponse.status]
     : null;
 
-  return { parsedResponse, handleRetryClick, StatusComponent };
+  return {
+    parsedResponse,
+    handleRetryClick,
+    handleAnalysisClick,
+    StatusComponent,
+  };
 };

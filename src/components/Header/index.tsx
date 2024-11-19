@@ -3,13 +3,13 @@ import ROUTES from "../../routes/routes";
 import "./index.css";
 import { BsArrowReturnLeft } from "react-icons/bs";
 import { ROUTES_LOOKUP } from "../../utils/routesLookup";
+import { exceptionRoutes } from "./exceptionRoutes";
 
 const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
   const matchedRoute = ROUTES_LOOKUP[location.pathname];
-  const exceptionRoutes = [ROUTES.home.path, ROUTES.result.path];
   const isExceptionRoute = exceptionRoutes.includes(location.pathname);
 
   return (

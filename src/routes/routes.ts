@@ -2,6 +2,7 @@ import Home from "./home/index.tsx";
 import IndividualForm from "./individualForm/index.tsx";
 import CompanyForm from "./companyForm/index.tsx";
 import Result from "./result/index.tsx";
+import CreditAnalysis from "./creditAnalysis/index.tsx";
 
 const ROUTES: Record<
   string,
@@ -26,6 +27,11 @@ const ROUTES: Record<
     name: "Resultados",
     path: "/resultado",
     component: Result,
+  },
+  analysis: {
+    name: "Análises de crédito",
+    path: "/analise-de-credito",
+    component: CreditAnalysis,
   },
 };
 
