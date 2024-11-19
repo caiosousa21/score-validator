@@ -1,4 +1,5 @@
 import { Form } from "../../components/Form";
+import ENDPOINTS from "../../utils/endpoints";
 import { schema } from "./schema";
 
 interface CompanyFormInput {
@@ -21,7 +22,7 @@ const CompanyForm = () => {
       <Form
         defaultValues={defaultValues}
         schema={schema}
-        submitUrl="/credit-score/company"
+        submitUrl={ENDPOINTS.companyScore.url}
         formType="companyForm"
         fields={[
           { name: "name", label: "Razão social" },

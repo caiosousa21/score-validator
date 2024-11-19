@@ -1,4 +1,5 @@
 import { Form } from "../../components/Form";
+import ENDPOINTS from "../../utils/endpoints";
 import { schema } from "./schema";
 
 interface IndividualFormInput {
@@ -23,7 +24,7 @@ const IndividualForm = () => {
       <Form
         defaultValues={defaultValues}
         schema={schema}
-        submitUrl="/credit-score/person"
+        submitUrl={ENDPOINTS.personScore.url}
         formType="individualForm"
         fields={[
           { name: "name", label: "Name" },
