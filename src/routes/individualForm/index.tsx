@@ -1,6 +1,8 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import api from "../../api/api";
+import axios from "axios";
 
 interface IndividualFormInput {
   name: string;
@@ -50,8 +52,17 @@ const IndividualForm = () => {
     defaultValues,
   });
 
-  const onSubmit: SubmitHandler<IndividualFormInput> = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<IndividualFormInput> = async (data) => {
+    try {
+      const response = await api.post("/credit-score/person", data);
+      console.log("Response:", response.data);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.error("API Error:", error.response?.data);
+      } else {
+        console.error("Unexpected Error:", error);
+      }
+    }
   };
 
   return (

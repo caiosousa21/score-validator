@@ -1,6 +1,8 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import api from "../../api/api";
+import axios from "axios";
 
 interface CompanyFormInput {
   name: string;
@@ -20,8 +22,9 @@ const schema = yup.object().shape({
     .length(14, "Document must be exactly 11 characters."),
   revenue: yup
     .number()
-    .required("Income is required.")
-    .positive("Income must be a positive number."),
+    .required("Revenue is required.")
+    .positive("Revenue must be a positive number.")
+    .min(500, "Revenue must be over 500."),
   city: yup.string().required("City is required."),
 });
 
@@ -42,8 +45,17 @@ const CompanyForm = () => {
     defaultValues,
   });
 
-  const onSubmit: SubmitHandler<CompanyFormInput> = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<CompanyFormInput> = async (data) => {
+    try {
+      const response = await api.post("/credit-score/company", data);
+      console.log("Response:", response.data);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.error("API Error:", error.response?.data);
+      } else {
+        console.error("Unexpected Error:", error);
+      }
+    }
   };
 
   return (
@@ -54,16 +66,17 @@ const CompanyForm = () => {
       >
         <label htmlFor="name">Razão social:</label>
         <input id="name" {...register("name")} />
-        {errors.name && <p>{errors.name.message}</p>}{" "}
+        {errors.name && <p>{errors.name.message}</p>}
         <label htmlFor="document">Document:</label>
         <input id="document" {...register("document")} />
-        {errors.document && <p>{errors.document.message}</p>}{" "}
+        {errors.document && <p>{errors.document.message}</p>}
         <label htmlFor="revenue">Revenue:</label>
         <input id="revenue" {...register("revenue")} />
-        {errors.revenue && <p>{errors.revenue.message}</p>}{" "}
+        {errors.revenue && <p>{errors.revenue.message}</p>}
         <label htmlFor="city">City:</label>
         <input id="city" {...register("city")} />
-        {errors.city && <p>{errors.city.message}</p>} <input type="submit" />
+        {errors.city && <p>{errors.city.message}</p>}
+        <input type="submit" />
       </form>
     </div>
   );
