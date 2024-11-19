@@ -1,6 +1,10 @@
 import "./styles.css";
 
-function ButtonContainer({ children }: { children: React.ReactNode }) {
+interface ButtonContainerProps {
+  children: React.ReactNode;
+}
+
+function ButtonContainer({ children }: ButtonContainerProps) {
   return <section className="button-container">{children}</section>;
 }
 
