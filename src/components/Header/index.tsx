@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/routes";
-import "./index.css";
+import "./styles.css";
 import { BsArrowReturnLeft } from "react-icons/bs";
 import { ROUTES_LOOKUP } from "../../utils/routesLookup";
 import { exceptionRoutes } from "./exceptionRoutes";

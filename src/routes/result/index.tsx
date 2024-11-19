@@ -1,3 +1,4 @@
+import ButtonContainer from "../../components/ButtonContainer";
 import { useResult } from "../../hooks/useResult";
 
 function Result() {
@@ -9,13 +10,17 @@ function Result() {
   } = useResult();
 
   return StatusComponent ? (
-    <div>
+    <main>
       <StatusComponent {...parsedResponse} />
-      <button onClick={handleRetryClick}>Checar Score Novamente</button>
-      <button onClick={handleAnalysisClick}>Checar análise de créditos</button>
-    </div>
+      <ButtonContainer>
+        <button onClick={handleRetryClick}>Checar Score Novamente</button>
+        <button onClick={handleAnalysisClick}>
+          Checar análise de créditos
+        </button>
+      </ButtonContainer>
+    </main>
   ) : (
-    <div>Loading or Unknown Status</div>
+    <main>Loading or Unknown Status</main>
   );
 }
 
