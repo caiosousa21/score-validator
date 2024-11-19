@@ -9,6 +9,7 @@ import {
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 interface GenericFormProps<T extends FieldValues> {
   defaultValues: DefaultValues<T>;
@@ -27,6 +28,7 @@ export const Form = <T extends Record<string, any>>({
   submitUrl,
   fields,
 }: GenericFormProps<T>) => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -39,7 +41,10 @@ export const Form = <T extends Record<string, any>>({
   const onSubmit: SubmitHandler<T> = async (data) => {
     try {
       const response = await axios.post(submitUrl, data);
-      console.log("Response:", response.data);
+      if (response.status === 200) {
+        localStorage.setItem("response", JSON.stringify(response.data));
+        navigate("/resultado");
+      }
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.error("API Error:", error.response?.data);

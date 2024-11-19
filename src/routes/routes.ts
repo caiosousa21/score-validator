@@ -1,6 +1,7 @@
 import Home from "./home/index.tsx";
 import IndividualForm from "./individualForm/index.tsx";
 import CompanyForm from "./companyForm/index.tsx";
+import Result from "./result/index.tsx";
 
 const ROUTES: Record<
   string,
@@ -20,6 +21,11 @@ const ROUTES: Record<
     name: "Formulário Empresarial",
     path: "/formulario-empresarial",
     component: CompanyForm,
+  },
+  result: {
+    name: "Resultados",
+    path: "/resultado",
+    component: Result,
   },
 };
 
